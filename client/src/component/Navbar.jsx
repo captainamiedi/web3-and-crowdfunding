@@ -53,10 +53,10 @@ const NavData = [
   },
   {
     name: 'Exchange',
-    route: 'exchange'
+    route: '/exchange'
   },
   {
     name: 'CrowdFunding',
-    route: 'crowdfunding'
+    route: '/crowdfunding'
   },
 ]
