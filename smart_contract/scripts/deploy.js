@@ -8,11 +8,15 @@ const main = async () => {
 
   // We get the contract to deploy
   const Transactions = await hre.ethers.getContractFactory("Transactions");
+  const CrowdFunding = await hre.ethers.getContractFactory('CrowdFunding');
   const transactions = await Transactions.deploy();
+  const crowdFunding = await CrowdFunding.deploy();
 
   await transactions.deployed();
+  await crowdFunding.deployed();
 
   console.log("Transaction deployed to:", transactions.address);
+  console.log("crowdfunding deployed to:", crowdFunding.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -1,5 +1,6 @@
 import React from 'react'
 import ExchangeTable from '../../component/ExchangeTable'
+import Footer from '../../component/Footer'
 import Navbar from '../../component/Navbar'
 import { TransactionContext } from '../../Context/TransactionContext'
 
@@ -18,6 +19,7 @@ export default function Exchange() {
             <ExchangeTable data={marketCapData} />
 
         </div>
+        <Footer />
     </div>
   )
 }

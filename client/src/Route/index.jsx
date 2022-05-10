@@ -3,6 +3,7 @@ import {
     Routes,
     Route,
   } from "react-router-dom";
+import CrowdFunding from "../Pages/CrowdFunding";
 import Exchange from "../Pages/Exchange/Exchange";
 import HomePage from "../Pages/HomePage";
 
@@ -13,6 +14,7 @@ import HomePage from "../Pages/HomePage";
             <Routes>
                 <Route index element={<HomePage />} />
                 <Route path="exchange" element={<Exchange />} />
+                <Route path="crowdfunding" element={<CrowdFunding />} />
             </Routes>
           </BrowserRouter>
       )
