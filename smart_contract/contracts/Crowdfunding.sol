@@ -44,6 +44,8 @@ contract CrowdFunding {
         uint256 goalAmount, 
         uint numFunders
     );
+     // Event that will be emitted whenever funding will be received
+    event FundingReceived(address contributor, uint amount, uint currentTotal);
 
     function startProject (
         string calldata title,
@@ -66,22 +68,23 @@ contract CrowdFunding {
         return projects;
     }
 
-    function contribute (uint id) public payable {
+    function contribute (uint id, uint amount) external payable {
         uint i = find(id);
         if ( keccak256(abi.encodePacked(projects[i].status)) == keccak256(abi.encodePacked('Fundraising'))) {
             // require(payable(projects[i].projectStarter) != msg.send);
-            projects[i].amount += msg.value;
+            projects[i].amount += amount;
             projects[i].numFunders += 1;
             Funder storage c = funders[id];
             c.addr = msg.sender;
             c.amount = msg.value;
             checkIfFundingCompleteOrExpired(i);
+            emit FundingReceived(msg.sender, msg.value, projects[i].amount);
         }
     } 
 
     function checkIfFundingCompleteOrExpired(uint proj) public {
 
-        if (projects[proj].amount >= projects[proj].amount ) {
+        if (projects[proj].amount >= projects[proj].goalAmount ) {
             projects[proj].status = 'Successful';
         }
         if (block.timestamp > projects[proj].deadline) {
