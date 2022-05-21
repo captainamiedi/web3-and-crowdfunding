@@ -1,18 +1,19 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-export default function ProgressBar() {
+export default function ProgressBar({givenAmount, goal}) {
+
   return (
     <Box sx={{ width: '100%' }}>
-      <LinearProgressWithLabel value={60} givenAmount={1.2} goal='4' />
+      <LinearProgressWithLabel value={Math.round((givenAmount / goal) * 100)} givenAmount={givenAmount} goal={goal} />
     </Box>
   )
 }
 
 function LinearProgressWithLabel(props) {
+  console.log(props.value);
     return (
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box sx={{ minWidth: 70 }}>
