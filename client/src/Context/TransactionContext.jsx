@@ -17,7 +17,7 @@ const getEthereumContract = () => {
 const getCrowdFundingContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum)
     const signer = provider.getSigner()
-    console.log(signer, 'signer');
+    // console.log(signer, 'signer');
     const crowdFundingContract = new ethers.Contract(crowdFundingAddress, contractAbiCrowd, signer)
     return crowdFundingContract;
 }
@@ -50,7 +50,7 @@ export const TransactionProvider = ({children}) => {
         try {
             if (!ethereum) return alert('Please install meta mask')
             const transactionContract = getEthereumContract()
-            console.log(transactionContract, 'cont');
+            // console.log(transactionContract, 'cont');
             const availableTransactions =  await transactionContract.getAllTransaction();
 
             const structuredTransactions = availableTransactions.map((transaction) => ({
@@ -73,7 +73,7 @@ export const TransactionProvider = ({children}) => {
         try {
             if (!ethereum) return alert('Please install meta mask')
             const crowdFundingContract =await getCrowdFundingContract()
-            console.log(crowdFundingContract, 'crowd');
+            // console.log(crowdFundingContract, 'crowd');
             const availableProjects = await crowdFundingContract.returnAllProjects();
             const structuredProject = availableProjects.map((project) => ({
                 description: project.projectDesc,
@@ -87,7 +87,7 @@ export const TransactionProvider = ({children}) => {
                 id: parseInt(project.id._hex, 16)
               }));
               setProjects(structuredProject)
-            console.log(availableProjects, 'project');
+            // console.log(availableProjects, 'project');
         } catch (error) {
             console.log(error, 'crowd error');
         }
@@ -189,11 +189,9 @@ export const TransactionProvider = ({children}) => {
             throw new Error('no ethereum')
         }
     }
-console.log(currentAccount, 'current');
+
     const handleFunding =async (data, amount) => {
         const {contractAddress, id} = data;
-        console.log(data);
-        console.log(amount, 'amount');
         if (!ethereum) return alert('Please install meta mask')
         const projectContract = getCrowdFundingContract()
         const parsedAmount = ethers.utils.parseEther(amount);
@@ -207,7 +205,7 @@ console.log(currentAccount, 'current');
                     // data: projectContract.address
                 }]
             })
-        const transactionHash = await projectContract.contribute(id)
+        const transactionHash = await projectContract.contribute(id, parsedAmount)
         setFundIsLoading(true)
         console.log(`Loading - ${transactionHash.hash}`);
         await transactionHash.wait()

@@ -34,7 +34,7 @@ export default function StartProject() {
             variant="outlined"
             onChange={handleChangeProject}
             value={inputData.title}
-            className='focus:outline-none focus:outline-offset-0'
+            className='border-none focus:ring-0'
           />
         </div>
         <div className="py-5">
@@ -49,7 +49,7 @@ export default function StartProject() {
             variant="outlined"
             onChange={handleChangeProject}
             value={inputData.description}
-            className='focus:outline-none focus:outline-offset-0'
+            className='border-none focus:ring-0'
           />
         </div>
         <div className="py-3 flex justify-between">
@@ -64,7 +64,7 @@ export default function StartProject() {
               type="number"
               onChange={handleChangeProject}
               value={inputData.goalAmount}
-              className='focus:outline-none focus:outline-offset-0'
+              // className='focus:outline-none focus:outline-offset-0'
             />
           </div>
           <div className="pl-2">
@@ -78,7 +78,7 @@ export default function StartProject() {
               type="number"
               onChange={handleChangeProject}
               value={inputData.duration}
-              className='focus:outline-none focus:outline-offset-0'
+              className='border-transparent focus:border-transparent focus:ring-0'
             />
           </div>
         </div>

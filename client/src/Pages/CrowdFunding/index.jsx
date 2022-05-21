@@ -6,7 +6,6 @@ import { TransactionContext } from '../../Context/TransactionContext'
 
 export default function CrowdFunding() {
   const {projects} = React.useContext(TransactionContext)
-  console.log(projects, 'prodddd');
   return (
     <div className="min-h-screen">
         <div className="gradient-bg-welcome">
