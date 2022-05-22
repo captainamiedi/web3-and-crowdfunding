@@ -116,6 +116,9 @@ export const TransactionProvider = ({children}) => {
             if (!ethereum) return alert('Please install meta mask')
             const account = await ethereum.request({ method: 'eth_requestAccounts'})
             setCurrentAccount(account[0])
+            if (account.length > 0){
+                checkIfWalletIsConnected()
+            }
         } catch (error) {
             console.log(error);
             throw new Error('no ethereum')
